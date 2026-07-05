@@ -14,6 +14,8 @@ function bespoke_vc_defaults() {
 	if ( null === $defaults ) {
 		$defaults = array(
 			'hero_image'            => '',
+			'hero_image_fit'        => 'cover',
+			'hero_image_position'   => 'center',
 			'hero_heading'          => 'Bespoke Virtual Concierge',
 			'hero_tagline'          => 'Unlocking Potential, Together.',
 			'what_we_do_image'      => '',

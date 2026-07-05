@@ -46,7 +46,12 @@ Theme location: `wp-content/themes/bespoke-vc/`
 4. **Activate** the theme in Appearance > Themes.
 5. Go to **Appearance > Customize** and fill in:
    - *Landing Page: Hero* — upload a hero background photo, set the heading
-     and tagline text
+     and tagline text, and choose **Hero Image Fit** (Fill & Crop, Fit
+     Entirely with no cropping, or Stretch to Fill) and **Hero Image
+     Position** (Centered, Top, Bottom, Left, Right) to control how the
+     image is framed — useful if the uploaded image isn't the same
+     proportions as the full-width hero banner (e.g. a logo instead of a
+     wide photo)
    - *Landing Page: What We Do* — upload an image, edit the description text
    - *Landing Page: About Me* — upload a photo, edit the bio text
    - *Landing Page: Contact Me* — name, location, contact email (with a

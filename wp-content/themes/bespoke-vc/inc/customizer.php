@@ -7,6 +7,12 @@ function bespoke_vc_sanitize_checkbox( $checked ) {
 	return (bool) $checked;
 }
 
+function bespoke_vc_sanitize_select( $input, $setting ) {
+	$control = $setting->manager->get_control( $setting->id );
+	$choices = $control ? $control->choices : array();
+	return array_key_exists( $input, $choices ) ? $input : $setting->default;
+}
+
 function bespoke_vc_customize_register( $wp_customize ) {
 
 	// Hero.
@@ -34,6 +40,50 @@ function bespoke_vc_customize_register( $wp_customize ) {
 				'section'  => 'bespoke_vc_hero',
 				'priority' => 10,
 			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'hero_image_fit',
+		array(
+			'default'           => bespoke_vc_default( 'hero_image_fit' ),
+			'sanitize_callback' => 'bespoke_vc_sanitize_select',
+		)
+	);
+	$wp_customize->add_control(
+		'hero_image_fit',
+		array(
+			'label'   => __( 'Hero Image Fit', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_hero',
+			'type'    => 'select',
+			'choices' => array(
+				'cover'   => __( 'Fill & Crop (default)', 'bespoke-vc' ),
+				'contain' => __( 'Fit Entirely (no cropping)', 'bespoke-vc' ),
+				'stretch' => __( 'Stretch to Fill', 'bespoke-vc' ),
+			),
+		)
+	);
+
+	$wp_customize->add_setting(
+		'hero_image_position',
+		array(
+			'default'           => bespoke_vc_default( 'hero_image_position' ),
+			'sanitize_callback' => 'bespoke_vc_sanitize_select',
+		)
+	);
+	$wp_customize->add_control(
+		'hero_image_position',
+		array(
+			'label'   => __( 'Hero Image Position', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_hero',
+			'type'    => 'select',
+			'choices' => array(
+				'center' => __( 'Centered (default)', 'bespoke-vc' ),
+				'top'    => __( 'Top', 'bespoke-vc' ),
+				'bottom' => __( 'Bottom', 'bespoke-vc' ),
+				'left'   => __( 'Left', 'bespoke-vc' ),
+				'right'  => __( 'Right', 'bespoke-vc' ),
+			),
 		)
 	);
 

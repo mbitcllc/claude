@@ -5,10 +5,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $hero_image = bespoke_vc_get( 'hero_image' );
 $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bvc_status'] ) ) : '';
+
+$hero_fit_map      = array(
+	'cover'   => 'cover',
+	'contain' => 'contain',
+	'stretch' => '100% 100%',
+);
+$hero_position_map = array(
+	'center' => 'center',
+	'top'    => 'top',
+	'bottom' => 'bottom',
+	'left'   => 'left',
+	'right'  => 'right',
+);
+$hero_fit         = bespoke_vc_get( 'hero_image_fit' );
+$hero_position    = bespoke_vc_get( 'hero_image_position' );
+$hero_bg_size     = isset( $hero_fit_map[ $hero_fit ] ) ? $hero_fit_map[ $hero_fit ] : 'cover';
+$hero_bg_position = isset( $hero_position_map[ $hero_position ] ) ? $hero_position_map[ $hero_position ] : 'center';
 ?>
 <main id="main">
 
-	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>');"<?php endif; ?>>
+	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>'); background-size: <?php echo esc_attr( $hero_bg_size ); ?>; background-position: <?php echo esc_attr( $hero_bg_position ); ?>;"<?php endif; ?>>
 		<div class="bvc-hero-overlay">
 			<h1 class="bvc-hero-heading"><?php echo esc_html( bespoke_vc_get( 'hero_heading' ) ); ?></h1>
 			<p class="bvc-hero-tagline"><?php echo esc_html( bespoke_vc_get( 'hero_tagline' ) ); ?></p>
