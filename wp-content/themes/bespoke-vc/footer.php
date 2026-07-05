@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <footer class="bvc-footer">
-	<p>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?> &mdash; <?php echo esc_html( get_theme_mod( 'footer_text', 'All Rights Reserved.' ) ); ?></p>
+	<p>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?> &mdash; <?php echo esc_html( bespoke_vc_get( 'footer_text' ) ); ?></p>
 </footer>
 <?php wp_footer(); ?>
 </body>

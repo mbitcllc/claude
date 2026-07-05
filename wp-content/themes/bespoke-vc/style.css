@@ -11,9 +11,11 @@ Text Domain: bespoke-vc
 
 :root {
 	--bvc-dark: #14140f;
-	--bvc-dark-2: #1c1c17;
 	--bvc-cream: #f4f1ea;
 	--bvc-accent: #c9a24b;
+	--bvc-light-bg: #e7e6e2;
+	--bvc-charcoal: #2e2c28;
+	--bvc-serif: Georgia, 'Times New Roman', serif;
 }
 
 * {
@@ -96,53 +98,110 @@ a {
 
 .bvc-hero-tagline {
 	margin: 0;
-	font-family: Georgia, 'Times New Roman', serif;
+	font-family: var(--bvc-serif);
 	font-style: italic;
 	font-size: clamp(1.5rem, 5vw, 2.75rem);
 	font-weight: 400;
 }
 
-.bvc-contact {
-	background: var(--bvc-dark-2);
+.bvc-light-section {
+	background: var(--bvc-light-bg);
+	color: var(--bvc-charcoal);
 	padding: 5rem 1.5rem;
+}
+
+.bvc-light-section + .bvc-light-section {
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.bvc-heading-block {
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	margin: 0 0 2rem;
+	max-width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bvc-heading-block.bvc-centered {
 	text-align: center;
 }
 
-.bvc-section-heading {
-	font-family: Georgia, 'Times New Roman', serif;
-	font-weight: 400;
-	font-size: 2rem;
-	margin: 0 0 1rem;
-	position: relative;
-	display: inline-block;
-	padding-bottom: 1rem;
+.bvc-serif-body {
+	font-family: var(--bvc-serif);
+	line-height: 1.7;
+	font-size: 1.1rem;
+	max-width: 640px;
 }
 
-.bvc-section-heading::after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 60px;
-	height: 2px;
-	background: var(--bvc-accent);
+.bvc-two-col {
+	max-width: 1100px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1.1fr 0.9fr;
+	gap: 3rem;
+	align-items: center;
 }
 
-.bvc-contact-intro {
-	max-width: 560px;
-	margin: 0 auto 2rem;
-	opacity: 0.85;
-	line-height: 1.6;
+.bvc-two-col-reverse {
+	grid-template-columns: 0.9fr 1.1fr;
 }
 
-.bvc-contact-details {
-	margin-bottom: 2rem;
+.bvc-col-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 8px;
 }
 
-.bvc-contact-details a {
-	text-decoration: none;
-	border-bottom: 1px solid var(--bvc-accent);
+.bvc-about-photo img {
+	border-radius: 200px 200px 8px 8px;
+}
+
+.bvc-services-grid {
+	max-width: 1100px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 2.5rem 2rem;
+	text-align: center;
+}
+
+.bvc-service-item p {
+	margin: 0;
+}
+
+.bvc-service-number {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--bvc-charcoal);
+	color: var(--bvc-light-bg);
+	font-family: var(--bvc-serif);
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+}
+
+.bvc-contact-columns {
+	max-width: 640px;
+	margin: 0 auto 2.5rem;
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+	text-align: left;
+}
+
+.bvc-contact-col p {
+	margin: 0 0 0.35rem;
+}
+
+.bvc-underline-link {
+	text-decoration: underline;
 }
 
 .bvc-form-notice {
@@ -154,13 +213,13 @@ a {
 }
 
 .bvc-form-success {
-	background: rgba(90, 160, 90, 0.15);
-	border: 1px solid rgba(90, 160, 90, 0.4);
+	background: rgba(90, 140, 90, 0.15);
+	border: 1px solid rgba(70, 120, 70, 0.35);
 }
 
 .bvc-form-error {
-	background: rgba(190, 80, 80, 0.15);
-	border: 1px solid rgba(190, 80, 80, 0.4);
+	background: rgba(170, 70, 70, 0.15);
+	border: 1px solid rgba(150, 60, 60, 0.35);
 }
 
 .bvc-contact-form {
@@ -179,17 +238,17 @@ a {
 	font-size: 0.85rem;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
-	opacity: 0.8;
+	opacity: 0.7;
 }
 
 .bvc-field input,
 .bvc-field textarea {
 	width: 100%;
 	padding: 0.7rem 0.85rem;
-	background: rgba(255, 255, 255, 0.05);
-	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.15);
 	border-radius: 4px;
-	color: var(--bvc-cream);
+	color: var(--bvc-charcoal);
 	font-size: 1rem;
 	font-family: inherit;
 }
@@ -197,7 +256,7 @@ a {
 .bvc-field input:focus,
 .bvc-field textarea:focus {
 	outline: none;
-	border-color: var(--bvc-accent);
+	border-color: var(--bvc-charcoal);
 }
 
 .bvc-field-honeypot {
@@ -209,8 +268,8 @@ a {
 .bvc-submit {
 	display: inline-block;
 	padding: 0.85rem 2.25rem;
-	background: var(--bvc-accent);
-	color: var(--bvc-dark);
+	background: var(--bvc-charcoal);
+	color: var(--bvc-light-bg);
 	border: none;
 	border-radius: 4px;
 	font-size: 0.9rem;
@@ -221,7 +280,7 @@ a {
 }
 
 .bvc-submit:hover {
-	background: #d8b562;
+	background: #45423c;
 }
 
 .bvc-404 {
@@ -247,12 +306,31 @@ a {
 	opacity: 0.7;
 }
 
+@media (max-width: 780px) {
+	.bvc-two-col,
+	.bvc-two-col-reverse {
+		grid-template-columns: 1fr;
+	}
+
+	.bvc-services-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.bvc-contact-columns {
+		flex-direction: column;
+	}
+}
+
 @media (max-width: 600px) {
 	.bvc-hero {
 		padding: 5rem 1.25rem;
 	}
 
-	.bvc-contact {
+	.bvc-light-section {
 		padding: 4rem 1.25rem;
+	}
+
+	.bvc-services-grid {
+		grid-template-columns: 1fr;
 	}
 }

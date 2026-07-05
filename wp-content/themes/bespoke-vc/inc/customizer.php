@@ -9,6 +9,7 @@ function bespoke_vc_sanitize_checkbox( $checked ) {
 
 function bespoke_vc_customize_register( $wp_customize ) {
 
+	// Hero.
 	$wp_customize->add_section(
 		'bespoke_vc_hero',
 		array(
@@ -20,7 +21,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hero_image',
 		array(
-			'default'           => '',
+			'default'           => bespoke_vc_default( 'hero_image' ),
 			'sanitize_callback' => 'esc_url_raw',
 		)
 	);
@@ -39,7 +40,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hero_heading',
 		array(
-			'default'           => 'Bespoke Virtual Concierge',
+			'default'           => bespoke_vc_default( 'hero_heading' ),
 			'sanitize_callback' => 'sanitize_text_field',
 		)
 	);
@@ -55,7 +56,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'hero_tagline',
 		array(
-			'default'           => 'Unlocking Potential, Together.',
+			'default'           => bespoke_vc_default( 'hero_tagline' ),
 			'sanitize_callback' => 'sanitize_text_field',
 		)
 	);
@@ -68,18 +69,137 @@ function bespoke_vc_customize_register( $wp_customize ) {
 		)
 	);
 
+	// What We Do.
+	$wp_customize->add_section(
+		'bespoke_vc_what_we_do',
+		array(
+			'title'    => __( 'Landing Page: What We Do', 'bespoke-vc' ),
+			'priority' => 31,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'what_we_do_image',
+		array(
+			'default'           => bespoke_vc_default( 'what_we_do_image' ),
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'what_we_do_image',
+			array(
+				'label'   => __( 'Image', 'bespoke-vc' ),
+				'section' => 'bespoke_vc_what_we_do',
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'what_we_do_text',
+		array(
+			'default'           => bespoke_vc_default( 'what_we_do_text' ),
+			'sanitize_callback' => 'sanitize_textarea_field',
+		)
+	);
+	$wp_customize->add_control(
+		'what_we_do_text',
+		array(
+			'label'   => __( 'Text', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_what_we_do',
+			'type'    => 'textarea',
+		)
+	);
+
+	// About Me.
+	$wp_customize->add_section(
+		'bespoke_vc_about',
+		array(
+			'title'    => __( 'Landing Page: About Me', 'bespoke-vc' ),
+			'priority' => 32,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'about_photo',
+		array(
+			'default'           => bespoke_vc_default( 'about_photo' ),
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'about_photo',
+			array(
+				'label'   => __( 'Photo', 'bespoke-vc' ),
+				'section' => 'bespoke_vc_about',
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'about_bio',
+		array(
+			'default'           => bespoke_vc_default( 'about_bio' ),
+			'sanitize_callback' => 'sanitize_textarea_field',
+		)
+	);
+	$wp_customize->add_control(
+		'about_bio',
+		array(
+			'label'   => __( 'Bio', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_about',
+			'type'    => 'textarea',
+		)
+	);
+
+	// Contact Me.
 	$wp_customize->add_section(
 		'bespoke_vc_contact',
 		array(
-			'title'    => __( 'Landing Page: Contact', 'bespoke-vc' ),
-			'priority' => 31,
+			'title'    => __( 'Landing Page: Contact Me', 'bespoke-vc' ),
+			'priority' => 33,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'contact_name',
+		array(
+			'default'           => bespoke_vc_default( 'contact_name' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'contact_name',
+		array(
+			'label'   => __( 'Name', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_contact',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'contact_location',
+		array(
+			'default'           => bespoke_vc_default( 'contact_location' ),
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'contact_location',
+		array(
+			'label'   => __( 'Location', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_contact',
+			'type'    => 'text',
 		)
 	);
 
 	$wp_customize->add_setting(
 		'contact_email',
 		array(
-			'default'           => get_option( 'admin_email' ),
+			'default'           => bespoke_vc_default( 'contact_email' ),
 			'sanitize_callback' => 'sanitize_email',
 		)
 	);
@@ -95,7 +215,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'contact_email_visible',
 		array(
-			'default'           => true,
+			'default'           => bespoke_vc_default( 'contact_email_visible' ),
 			'sanitize_callback' => 'bespoke_vc_sanitize_checkbox',
 		)
 	);
@@ -111,7 +231,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'contact_phone',
 		array(
-			'default'           => '',
+			'default'           => bespoke_vc_default( 'contact_phone' ),
 			'sanitize_callback' => 'sanitize_text_field',
 		)
 	);
@@ -127,7 +247,7 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'contact_intro',
 		array(
-			'default'           => "Have a question or want to get started? Send us a message and we'll be in touch.",
+			'default'           => bespoke_vc_default( 'contact_intro' ),
 			'sanitize_callback' => 'sanitize_textarea_field',
 		)
 	);
@@ -140,18 +260,19 @@ function bespoke_vc_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Footer.
 	$wp_customize->add_section(
 		'bespoke_vc_footer',
 		array(
 			'title'    => __( 'Landing Page: Footer', 'bespoke-vc' ),
-			'priority' => 32,
+			'priority' => 34,
 		)
 	);
 
 	$wp_customize->add_setting(
 		'footer_text',
 		array(
-			'default'           => 'All Rights Reserved.',
+			'default'           => bespoke_vc_default( 'footer_text' ),
 			'sanitize_callback' => 'sanitize_text_field',
 		)
 	);

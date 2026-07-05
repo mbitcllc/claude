@@ -34,7 +34,7 @@ function bespoke_vc_handle_contact_form() {
 		bespoke_vc_contact_redirect( 'error' );
 	}
 
-	$to      = get_theme_mod( 'contact_email', get_option( 'admin_email' ) );
+	$to      = bespoke_vc_get( 'contact_email' );
 	$subject = sprintf( '[%s] New contact form submission', get_bloginfo( 'name' ) );
 	$body    = "Name: {$name}\nEmail: {$email}\n\nMessage:\n{$message}";
 	$headers = array( 'Reply-To: "' . addslashes( $name ) . '" <' . $email . '>' );

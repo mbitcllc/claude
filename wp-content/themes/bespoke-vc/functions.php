@@ -26,5 +26,6 @@ function bespoke_vc_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'bespoke_vc_scripts' );
 
+require get_template_directory() . '/inc/defaults.php';
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/contact-form.php';

@@ -3,20 +3,65 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$hero_image = get_theme_mod( 'hero_image', '' );
+$hero_image = bespoke_vc_get( 'hero_image' );
 $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bvc_status'] ) ) : '';
 ?>
 <main id="main">
 
 	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>');"<?php endif; ?>>
 		<div class="bvc-hero-overlay">
-			<h1 class="bvc-hero-heading"><?php echo esc_html( get_theme_mod( 'hero_heading', 'Bespoke Virtual Concierge' ) ); ?></h1>
-			<p class="bvc-hero-tagline"><?php echo esc_html( get_theme_mod( 'hero_tagline', 'Unlocking Potential, Together.' ) ); ?></p>
+			<h1 class="bvc-hero-heading"><?php echo esc_html( bespoke_vc_get( 'hero_heading' ) ); ?></h1>
+			<p class="bvc-hero-tagline"><?php echo esc_html( bespoke_vc_get( 'hero_tagline' ) ); ?></p>
 		</div>
 	</section>
 
-	<section id="contact" class="bvc-contact">
-		<h2 class="bvc-section-heading">Contact Us</h2>
+	<section id="what-we-do" class="bvc-light-section">
+		<div class="bvc-two-col">
+			<div class="bvc-col-text">
+				<h2 class="bvc-heading-block">What We Do</h2>
+				<p class="bvc-serif-body"><?php echo esc_html( bespoke_vc_get( 'what_we_do_text' ) ); ?></p>
+			</div>
+			<?php $what_we_do_image = bespoke_vc_get( 'what_we_do_image' ); ?>
+			<?php if ( $what_we_do_image ) : ?>
+				<div class="bvc-col-image">
+					<img src="<?php echo esc_url( $what_we_do_image ); ?>" alt="">
+				</div>
+			<?php endif; ?>
+		</div>
+	</section>
+
+	<section id="services" class="bvc-light-section">
+		<h2 class="bvc-heading-block bvc-centered">Services</h2>
+		<div class="bvc-services-grid">
+			<?php foreach ( bespoke_vc_services_list() as $index => $service ) : ?>
+				<div class="bvc-service-item">
+					<span class="bvc-service-number"><?php echo esc_html( $index + 1 ); ?></span>
+					<p class="bvc-serif-body"><?php echo esc_html( $service ); ?></p>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	</section>
+
+	<section id="about" class="bvc-light-section">
+		<div class="bvc-two-col bvc-two-col-reverse">
+			<?php
+			$about_photo = bespoke_vc_get( 'about_photo' );
+			$contact_name = bespoke_vc_get( 'contact_name' );
+			?>
+			<?php if ( $about_photo ) : ?>
+				<div class="bvc-col-image bvc-about-photo">
+					<img src="<?php echo esc_url( $about_photo ); ?>" alt="<?php echo esc_attr( $contact_name ); ?>">
+				</div>
+			<?php endif; ?>
+			<div class="bvc-col-text">
+				<h2 class="bvc-heading-block">About Me</h2>
+				<p class="bvc-serif-body"><?php echo esc_html( bespoke_vc_get( 'about_bio' ) ); ?></p>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="bvc-light-section">
+		<h2 class="bvc-heading-block">Contact Me</h2>
 
 		<?php if ( 'success' === $status ) : ?>
 			<p class="bvc-form-notice bvc-form-success">Thanks &mdash; your message has been sent. We'll be in touch soon.</p>
@@ -24,20 +69,31 @@ $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bv
 			<p class="bvc-form-notice bvc-form-error">Something went wrong sending your message. Please try again or email us directly.</p>
 		<?php endif; ?>
 
-		<?php $intro = get_theme_mod( 'contact_intro', "Have a question or want to get started? Send us a message and we'll be in touch." ); ?>
+		<?php $intro = bespoke_vc_get( 'contact_intro' ); ?>
 		<?php if ( $intro ) : ?>
-			<p class="bvc-contact-intro"><?php echo esc_html( $intro ); ?></p>
+			<p class="bvc-serif-body"><?php echo esc_html( $intro ); ?></p>
 		<?php endif; ?>
 
-		<div class="bvc-contact-details">
-			<?php $email = get_theme_mod( 'contact_email', get_option( 'admin_email' ) ); ?>
-			<?php if ( $email && get_theme_mod( 'contact_email_visible', true ) ) : ?>
-				<p><a href="<?php echo esc_url( 'mailto:' . $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
-			<?php endif; ?>
-			<?php $phone = get_theme_mod( 'contact_phone', '' ); ?>
-			<?php if ( $phone ) : ?>
-				<p><a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></p>
-			<?php endif; ?>
+		<div class="bvc-contact-columns">
+			<div class="bvc-contact-col">
+				<?php if ( $contact_name ) : ?>
+					<p class="bvc-serif-body"><?php echo esc_html( $contact_name ); ?></p>
+				<?php endif; ?>
+				<?php $location = bespoke_vc_get( 'contact_location' ); ?>
+				<?php if ( $location ) : ?>
+					<p class="bvc-serif-body"><?php echo esc_html( $location ); ?></p>
+				<?php endif; ?>
+			</div>
+			<div class="bvc-contact-col">
+				<?php $phone = bespoke_vc_get( 'contact_phone' ); ?>
+				<?php if ( $phone ) : ?>
+					<p class="bvc-serif-body"><a class="bvc-underline-link" href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></p>
+				<?php endif; ?>
+				<?php $email = bespoke_vc_get( 'contact_email' ); ?>
+				<?php if ( $email && bespoke_vc_get( 'contact_email_visible' ) ) : ?>
+					<p class="bvc-serif-body"><a href="<?php echo esc_url( 'mailto:' . $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
+				<?php endif; ?>
+			</div>
 		</div>
 
 		<form class="bvc-contact-form" method="post" action="<?php echo esc_url( home_url( '/' ) ); ?>#contact">
