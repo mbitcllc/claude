@@ -51,7 +51,9 @@ Theme location: `wp-content/themes/bespoke-vc/`
      Position** (Centered, Top, Bottom, Left, Right) to control how the
      image is framed — useful if the uploaded image isn't the same
      proportions as the full-width hero banner (e.g. a logo instead of a
-     wide photo)
+     wide photo). Uncheck **Darken image with overlay** to show the image
+     at full brightness/color instead of dimmed under the dark gradient
+     (better for a logo than a photo).
    - *Landing Page: What We Do* — upload an image, edit the description text
    - *Landing Page: About Me* — upload a photo, edit the bio text
    - *Landing Page: Contact Me* — name, location, contact email (with a

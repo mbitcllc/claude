@@ -22,10 +22,11 @@ $hero_fit         = bespoke_vc_get( 'hero_image_fit' );
 $hero_position    = bespoke_vc_get( 'hero_image_position' );
 $hero_bg_size     = isset( $hero_fit_map[ $hero_fit ] ) ? $hero_fit_map[ $hero_fit ] : 'cover';
 $hero_bg_position = isset( $hero_position_map[ $hero_position ] ) ? $hero_position_map[ $hero_position ] : 'center';
+$hero_class       = 'bvc-hero' . ( bespoke_vc_get( 'hero_overlay_visible' ) ? '' : ' bvc-hero-no-overlay' );
 ?>
 <main id="main">
 
-	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>'); background-size: <?php echo esc_attr( $hero_bg_size ); ?>; background-position: <?php echo esc_attr( $hero_bg_position ); ?>;"<?php endif; ?>>
+	<section class="<?php echo esc_attr( $hero_class ); ?>" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>'); background-size: <?php echo esc_attr( $hero_bg_size ); ?>; background-position: <?php echo esc_attr( $hero_bg_position ); ?>;"<?php endif; ?>>
 		<div class="bvc-hero-overlay">
 			<h1 class="bvc-hero-heading"><?php echo esc_html( bespoke_vc_get( 'hero_heading' ) ); ?></h1>
 			<p class="bvc-hero-tagline"><?php echo esc_html( bespoke_vc_get( 'hero_tagline' ) ); ?></p>

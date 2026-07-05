@@ -71,8 +71,13 @@ a {
 	background-color: var(--bvc-dark);
 	background-size: cover;
 	background-position: center;
+	background-repeat: no-repeat;
 	text-align: center;
 	padding: 6rem 1.5rem;
+}
+
+.bvc-hero.bvc-hero-no-overlay::before {
+	display: none;
 }
 
 .bvc-hero::before {

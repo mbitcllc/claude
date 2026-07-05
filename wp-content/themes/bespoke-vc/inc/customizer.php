@@ -88,6 +88,23 @@ function bespoke_vc_customize_register( $wp_customize ) {
 	);
 
 	$wp_customize->add_setting(
+		'hero_overlay_visible',
+		array(
+			'default'           => bespoke_vc_default( 'hero_overlay_visible' ),
+			'sanitize_callback' => 'bespoke_vc_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'hero_overlay_visible',
+		array(
+			'label'       => __( 'Darken image with overlay', 'bespoke-vc' ),
+			'description' => __( 'Turn off for a logo or image that should show at full brightness/color.', 'bespoke-vc' ),
+			'section'     => 'bespoke_vc_hero',
+			'type'        => 'checkbox',
+		)
+	);
+
+	$wp_customize->add_setting(
 		'hero_heading',
 		array(
 			'default'           => bespoke_vc_default( 'hero_heading' ),

@@ -16,6 +16,7 @@ function bespoke_vc_defaults() {
 			'hero_image'            => '',
 			'hero_image_fit'        => 'cover',
 			'hero_image_position'   => 'center',
+			'hero_overlay_visible'  => true,
 			'hero_heading'          => 'Bespoke Virtual Concierge',
 			'hero_tagline'          => 'Unlocking Potential, Together.',
 			'what_we_do_image'      => '',
