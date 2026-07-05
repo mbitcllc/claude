@@ -10,8 +10,8 @@ $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bv
 
 	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>');"<?php endif; ?>>
 		<div class="bvc-hero-overlay">
-			<h1 class="bvc-hero-heading"><?php echo esc_html( get_theme_mod( 'hero_heading', get_bloginfo( 'name' ) ) ); ?></h1>
-			<p class="bvc-hero-tagline"><?php echo esc_html( get_theme_mod( 'hero_tagline', '' ) ); ?></p>
+			<h1 class="bvc-hero-heading"><?php echo esc_html( get_theme_mod( 'hero_heading', 'Bespoke Virtual Concierge' ) ); ?></h1>
+			<p class="bvc-hero-tagline"><?php echo esc_html( get_theme_mod( 'hero_tagline', 'Unlocking Potential, Together.' ) ); ?></p>
 		</div>
 	</section>
 
@@ -24,7 +24,7 @@ $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bv
 			<p class="bvc-form-notice bvc-form-error">Something went wrong sending your message. Please try again or email us directly.</p>
 		<?php endif; ?>
 
-		<?php $intro = get_theme_mod( 'contact_intro', '' ); ?>
+		<?php $intro = get_theme_mod( 'contact_intro', "Have a question or want to get started? Send us a message and we'll be in touch." ); ?>
 		<?php if ( $intro ) : ?>
 			<p class="bvc-contact-intro"><?php echo esc_html( $intro ); ?></p>
 		<?php endif; ?>
