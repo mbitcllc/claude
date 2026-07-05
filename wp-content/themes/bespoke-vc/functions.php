@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BESPOKE_VC_VERSION', '1.0.0' );
+define( 'BESPOKE_VC_VERSION', '1.0.1' );
 
 function bespoke_vc_setup() {
 	add_theme_support( 'title-tag' );
