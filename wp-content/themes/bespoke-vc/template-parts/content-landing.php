@@ -31,7 +31,7 @@ $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bv
 
 		<div class="bvc-contact-details">
 			<?php $email = get_theme_mod( 'contact_email', get_option( 'admin_email' ) ); ?>
-			<?php if ( $email ) : ?>
+			<?php if ( $email && get_theme_mod( 'contact_email_visible', true ) ) : ?>
 				<p><a href="<?php echo esc_url( 'mailto:' . $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
 			<?php endif; ?>
 			<?php $phone = get_theme_mod( 'contact_phone', '' ); ?>

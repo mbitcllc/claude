@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function bespoke_vc_sanitize_checkbox( $checked ) {
+	return (bool) $checked;
+}
+
 function bespoke_vc_customize_register( $wp_customize ) {
 
 	$wp_customize->add_section(
@@ -85,6 +89,22 @@ function bespoke_vc_customize_register( $wp_customize ) {
 			'label'   => __( 'Contact Email (displayed + form recipient)', 'bespoke-vc' ),
 			'section' => 'bespoke_vc_contact',
 			'type'    => 'email',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'contact_email_visible',
+		array(
+			'default'           => true,
+			'sanitize_callback' => 'bespoke_vc_sanitize_checkbox',
+		)
+	);
+	$wp_customize->add_control(
+		'contact_email_visible',
+		array(
+			'label'   => __( 'Show Contact Email on the page', 'bespoke-vc' ),
+			'section' => 'bespoke_vc_contact',
+			'type'    => 'checkbox',
 		)
 	);
 
