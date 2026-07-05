@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $hero_image = get_theme_mod( 'hero_image', '' );
 $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bvc_status'] ) ) : '';
 ?>
-<main id="main" class="bvc-main">
+<main id="main">
 
 	<section class="bvc-hero" <?php if ( $hero_image ) : ?>style="background-image:url('<?php echo esc_url( $hero_image ); ?>');"<?php endif; ?>>
 		<div class="bvc-hero-overlay">
@@ -32,19 +32,19 @@ $status     = isset( $_GET['bvc_status'] ) ? sanitize_key( wp_unslash( $_GET['bv
 		<div class="bvc-contact-details">
 			<?php $email = get_theme_mod( 'contact_email', get_option( 'admin_email' ) ); ?>
 			<?php if ( $email ) : ?>
-				<p><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
+				<p><a href="<?php echo esc_url( 'mailto:' . $email ); ?>"><?php echo esc_html( $email ); ?></a></p>
 			<?php endif; ?>
 			<?php $phone = get_theme_mod( 'contact_phone', '' ); ?>
 			<?php if ( $phone ) : ?>
-				<p><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></p>
+				<p><a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></p>
 			<?php endif; ?>
 		</div>
 
 		<form class="bvc-contact-form" method="post" action="<?php echo esc_url( home_url( '/' ) ); ?>#contact">
 			<?php wp_nonce_field( 'bvc_contact_form', 'bvc_contact_nonce' ); ?>
-			<div class="bvc-field-honeypot">
-				<label for="bvc_website">Website</label>
-				<input type="text" id="bvc_website" name="bvc_website" tabindex="-1" autocomplete="off">
+			<div class="bvc-field-honeypot" aria-hidden="true">
+				<label for="bvc_hp_field">Leave this field empty</label>
+				<input type="text" id="bvc_hp_field" name="bvc_hp_field" tabindex="-1" autocomplete="off">
 			</div>
 			<div class="bvc-field">
 				<label for="bvc_name">Name</label>

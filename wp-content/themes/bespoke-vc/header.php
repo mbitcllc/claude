@@ -13,11 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header class="bvc-header">
-	<div class="bvc-header-inner">
-		<?php if ( has_custom_logo() ) : ?>
-			<div class="bvc-logo"><?php the_custom_logo(); ?></div>
-		<?php else : ?>
-			<a class="bvc-site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-		<?php endif; ?>
-	</div>
+	<?php if ( has_custom_logo() ) : ?>
+		<div class="bvc-logo"><?php the_custom_logo(); ?></div>
+	<?php else : ?>
+		<a class="bvc-site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
+	<?php endif; ?>
 </header>

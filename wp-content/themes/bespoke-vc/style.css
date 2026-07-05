@@ -224,6 +224,21 @@ a {
 	background: #d8b562;
 }
 
+.bvc-404 {
+	min-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 4rem 1.5rem;
+}
+
+.bvc-404 a {
+	text-decoration: none;
+	border-bottom: 1px solid var(--bvc-accent);
+}
+
 .bvc-footer {
 	background: #0d0d0a;
 	text-align: center;
